@@ -98,6 +98,7 @@ jobs:
       - name: Verify installed packages
         run: |
           docker run --rm \
+            --user 1000:1000 \
             -v "${{ github.workspace }}/scripts/verify_packages.R:/tmp/verify_packages.R:ro" \
             "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.build.outputs.date_tag }}" \
             Rscript /tmp/verify_packages.R
